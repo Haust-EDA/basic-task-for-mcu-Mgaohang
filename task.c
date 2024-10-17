@@ -1,4 +1,4 @@
-
+#include<reg51.h>
 
 void delay_ms(unsigned int x)  // 延时函数
 {
@@ -10,21 +10,26 @@ void delay_ms(unsigned int x)  // 延时函数
             for(j=5;j>0;j--);
         }
     }
-    else while(x--)for(j=115;j>0;j--);
-}
-
-// tips: 原理图当中led为低电平点亮，比如点亮LED2,代码为： P0 = 0xFE (1111 1110)
-
-
+    else
+    {
+       while(x--)
+       {
+          for(j = 115; j > 0;j--);
+       }
+    }
 int main(void)
 {
-    """
-    在下方编写你的代码
-    """
-    
-
- 
-
+    unsigned char led = 0x7F;
+    while(1)
+    {
+       P0 = led;
+       delay-ms(500);
+       led = (led << 1) | 0x01;
+       if(led == 0xFF);
+    {  
+          led  = 0x7F;
+    }
+ }
     return 0;
 }
 
